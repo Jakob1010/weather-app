@@ -1,0 +1,11 @@
+.mypy*
+
+.pytest*
+
+.devcontainer*
+
+.vscode*
+
+__pycache__*
+
+res/*
