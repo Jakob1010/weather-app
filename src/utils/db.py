@@ -14,10 +14,10 @@ class WarehouseConnection:
     def managed_cursor(self):
         self.engine = create_engine(self.conn_url)
         self.conn = self.engine.raw_connection()
-        self.conn.autocommit = True
         self.curr = self.conn.cursor()
         try: 
             yield self.curr
         finally:
+            self.conn.commit()
             self.curr.close()
             self.conn.close()
