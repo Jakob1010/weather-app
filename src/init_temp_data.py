@@ -41,7 +41,7 @@ def fahrenheit_to_celsius(f):
 def insert_data(temperature_data: pd.DataFrame):
     print('>>insert_temp_data')
     try:
-        with WarehouseConnection(**get_warehouse_creds()).managed_cursor() as curr:
+        with WarehouseConnection(**get_warehouse_creds()).managed_cursor_init() as curr:
             output = io.StringIO()
             temperature_data.to_csv(output, sep='\t', header=False, index=True)
             output.seek(0)
@@ -50,9 +50,9 @@ def insert_data(temperature_data: pd.DataFrame):
             curr.copy_from(output, 'temperature', null="")
             #curr.execute('ALTER TABLE temperature ADD PRIMARY KEY (index);')
             #curr.execute('ALTER TABLE temperature CHANGE index id INT( 11 ) NOT NULL AUTO_INCREMENT')
-            print('>>insert_temp_data: success!')
+            print('++insert_temp_data: success!')
     except Exception as e:
-        print('>>insert_temp_data: error!')
+        print('--insert_temp_data: error!')
         print(e)
 
 
