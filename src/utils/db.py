@@ -1,7 +1,9 @@
-from contextlib import contextmanager
-import psycopg2
 import io
+from contextlib import contextmanager
+
+import psycopg2
 from sqlalchemy import create_engine
+
 
 class WarehouseConnection:
     def __init__(

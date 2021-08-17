@@ -25,10 +25,10 @@ def get_csv_temp() -> pd.DataFrame:
     # filter columns
     df = df.loc[0:2899539, ['Region', 'Country',
                             'City', 'Date', 'AvgTemperature']]
-    df.columns = ['region', 'country', 'city', 'dt', 'avg_temperature']
+    df.columns = ['region', 'country', 'city', 'dt', 'fahrenheit']
 
     # convert temperature
-    df['avg_temperature'] = df['avg_temperature'].apply(fahrenheit_to_celsius)
+    df['celsius'] = df['fahrenheit'].apply(fahrenheit_to_celsius)
 
     print(df.head(5))
     return df
@@ -43,13 +43,10 @@ def insert_data(temperature_data: pd.DataFrame):
     try:
         with WarehouseConnection(**get_warehouse_creds()).managed_cursor_init() as curr:
             output = io.StringIO()
-            temperature_data.to_csv(output, sep='\t', header=False, index=True)
+            temperature_data.to_csv(output, sep='\t', header=False, index=False)
             output.seek(0)
             contents = output.getvalue()
-            # null values become ''
-            curr.copy_from(output, 'temperature', null="")
-            #curr.execute('ALTER TABLE temperature ADD PRIMARY KEY (index);')
-            #curr.execute('ALTER TABLE temperature CHANGE index id INT( 11 ) NOT NULL AUTO_INCREMENT')
+            curr.copy_from(output, 'temperature', null="", columns=('region','country','city','dt','fahrenheit','celsius'))
             print('++insert_temp_data: success!')
     except Exception as e:
         print('--insert_temp_data: error!')
