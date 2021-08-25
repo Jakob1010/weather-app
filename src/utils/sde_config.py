@@ -7,6 +7,6 @@ def get_warehouse_creds() -> Dict[str, Optional[Union[str, int]]]:
         'user': 'jakob',
         'password': 'password',
         'db': 'temperature_db',
-        'host': 'localhost',
+        'host': 'db',
         'port': 5432
     }

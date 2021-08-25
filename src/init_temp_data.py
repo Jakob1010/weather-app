@@ -1,8 +1,10 @@
+import io
+
 import numpy as np
 import pandas as pd
-from sqlalchemy import create_engine, engine
 import psycopg2
-import io
+from sqlalchemy import create_engine, engine
+
 from utils.db import WarehouseConnection
 from utils.sde_config import get_warehouse_creds
 
