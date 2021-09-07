@@ -14,6 +14,7 @@ services:
             - "5432:5432"
         restart:
             always
+
     pipelinerunner:
         image: pipelinerunner
         container_name: pipelinerunner
@@ -22,6 +23,7 @@ services:
             dockerfile: ./containers/pipelinerunner/Dockerfile
         volumes:
             - ./:/code     
+            
     metabase:
         image: metabase/metabase
         container_name: metabase

@@ -8,6 +8,6 @@
 
 __pycache__*
 
-res/*
+res/city_temperature.csv
 
 src/utils/constants.py

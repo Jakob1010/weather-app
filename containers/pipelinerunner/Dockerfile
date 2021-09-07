@@ -11,20 +11,24 @@ RUN apt-get update && apt-get install cron -y
 ADD ./containers/pipelinerunner/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-# copy repo
-COPY ./ /code/
+# copy repo 
+COPY ./ /code/ 
+
+# extract csv
+ADD ./res/city_temperature.zip city_temperature.zip
+RUN unzip city_temperature.zip -d /res && ls
 
 # copy cron job
 COPY src/scheduler/pull_weather_cron /etc/cron.d/pull_weather_cron
 
-# Give execution rights
+# give execution rights
 RUN chmod 777 /etc/cron.d/pull_weather_cron
 
-# Apply cron job
+# apply cron job
 RUN crontab /etc/cron.d/pull_weather_cron
 
-# Log 
+# log 
 RUN touch /var/log/cron.log
 
-# Run cron
+# run cron
 CMD cron && tail -f /var/log/cron.log

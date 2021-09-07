@@ -12,7 +12,10 @@ from utils.sde_config import get_warehouse_creds
 def get_csv_temp() -> pd.DataFrame:
     print('>>get_csv_temp')
     # read csv file from res
-    df = pd.read_csv('../res/city_temperature.csv', low_memory=False)
+    df = pd.read_csv('../../res/city_temperature.csv', low_memory=True)
+
+    # filter city vienna
+    df = df[df['City']=='Vienna']
 
     # filter outliner
     df = df[df['AvgTemperature'] > -70]
