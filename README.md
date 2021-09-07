@@ -13,7 +13,7 @@ The archtiecture of the application can be divided into three components, which 
 2.) db: measurement and temperature db (both postgres)
 3.) metabase: dashboard for displaying data
 
-The application was tested is currently running on a alibaba server instance, running docker and docker compose v1.27.0 on Ubuntu 20.04. 
+The application was tested and is currently running on a alibaba server instance, running docker and docker compose v1.27.0 on Ubuntu 20.04. 
 
 ## Setup
 1. [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) v1.27.0 or later.
