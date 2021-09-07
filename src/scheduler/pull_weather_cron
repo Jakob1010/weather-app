@@ -1,2 +1,2 @@
-*/5 * * * * /usr/local/bin/python3 /code/src/etl_script.py
+0 * * * * /usr/local/bin/python3 /code/src/etl_script.py
 
