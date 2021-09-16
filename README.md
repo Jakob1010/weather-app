@@ -1,4 +1,4 @@
-# Weather Monitor
+# Temperature Monitor
 ![architecture](assets/weather_app_dashboard.png)
 
 This is an ETL pipeline which

@@ -15,6 +15,11 @@ def get_csv_temp() -> pd.DataFrame:
     df = pd.read_csv('../../res/city_temperature.csv', header=0,
     dtype={'Region':str,'Country':str,'State':str,'City':str,'Month': int,'Day':int,'Year':int,'AvgTemperature':float},low_memory=True)
 
+    cities = ['Vienna', 'Zurich', 'London', 'Moscow']
+
+    # filter cities
+    df = df[df['City'].isin(cities)]
+
     # filter outliner
     df = df[df['AvgTemperature'] > -70]
 
