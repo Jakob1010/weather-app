@@ -2,7 +2,6 @@ import io
 
 import numpy as np
 import pandas as pd
-import psycopg2
 from sqlalchemy import create_engine, engine
 
 from utils.db import WarehouseConnection
@@ -11,11 +10,10 @@ from utils.sde_config import get_warehouse_creds
 
 def get_csv_temp() -> pd.DataFrame:
     print('>>get_csv_temp')
-    # read csv file from res
-    df = pd.read_csv('../../res/city_temperature.csv', low_memory=True)
 
-    # filter city vienna
-    df = df[df['City']=='Vienna']
+    # read csv file from res
+    df = pd.read_csv('../../res/city_temperature.csv', header=0,
+    dtype={'Region':str,'Country':str,'State':str,'City':str,'Month': int,'Day':int,'Year':int,'AvgTemperature':float},low_memory=True)
 
     # filter outliner
     df = df[df['AvgTemperature'] > -70]
