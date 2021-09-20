@@ -3,7 +3,7 @@
 
 This is an ETL pipeline which
 - pulls live weather data from [openweathermap API](https://https://openweathermap.org/)
-- pulls history weather data from a [kaggle dataset](https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities) and loads it into a data warehouse.
+- pulls historic weather data from a [kaggle dataset](https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities) and loads it into a data warehouse.
 
 ## Architecture
 
